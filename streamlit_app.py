@@ -4,10 +4,10 @@ import PyPDF2
 
 # Função para extrair texto de arquivos PDF
 def extract_text_from_pdf(uploaded_file):
-    pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
+    pdf_reader = PyPDF2.PdfReader(uploaded_file)  # Alteração aqui
     text = ''
-    for page_num in range(pdf_reader.numPages):
-        page = pdf_reader.getPage(page_num)
+    for page_num in range(len(pdf_reader.pages)):
+        page = pdf_reader.pages[page_num]
         text += page.extract_text()
     return text
 
